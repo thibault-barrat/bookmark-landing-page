@@ -7,6 +7,14 @@
     box-sizing: border-box;
 }
 
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 body {
     margin: 0;
     padding: 0 32px;
@@ -14,8 +22,15 @@ body {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    
     &.body--menu-open {
         overflow: hidden;
+    }
+    @media screen and (min-width: $breakpoint-sm) {
+        padding: 0 80px;
+    }
+    @media screen and (min-width: $breakpoint-md) {
+        padding: 0 165px;
     }
 }
 
@@ -23,6 +38,14 @@ body {
     position: relative;
     margin: 0 -32px;
     padding: 40px 32px 70px 32px;
+    @media screen and (min-width: $breakpoint-sm) {
+        padding: 48px 0 100px 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
 .logo {
@@ -64,6 +87,9 @@ body {
     z-index: 2;
     background: none;
     border: none;
+    @media screen and (min-width: $breakpoint-sm) {
+        display: none;
+    }
     @for $i from 1 through 3 {
         &__inner-#{$i} {
             display: block;
@@ -123,6 +149,14 @@ body {
     border-bottom-left-radius: 100%;
     transform: translate(100%,-100%);
     z-index: 1;
+    @media screen and (min-width: $breakpoint-sm) {
+        transform: translate(0, 0);
+        background: none;
+        padding: 0;
+        height: auto;
+        position: static;
+        width: auto;
+    }
 }
 
 .nav-list {
@@ -132,57 +166,143 @@ body {
     text-transform: uppercase;
     text-align: center;
     width: 100%;
+    @media screen and (min-width: $breakpoint-sm) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
     li:last-child {
         border: none;
         padding: 24px 0;
+        @media screen and (min-width: $breakpoint-sm) {
+            padding: 0;
+            margin-right: 0;
+        }
     }
     &__item {
         padding: 26px 0;
         border-top: 1px solid $grayish-blue;
         border-bottom: 1px solid $grayish-blue;
+        @media screen and (min-width: $breakpoint-sm) {
+            border: none;
+            padding: 0;
+            margin: 0 10px;
+        }
+        @media screen and (min-width: $breakpoint-md) {
+            margin: 0 24px;
+        }
         &--no-border {
             border: none;
         }
-        &--padding-b-t-19px {
+        &--padding-b-t-19px-mobile {
             padding: 19px 0;
+            @media screen and (min-width: $breakpoint-sm) {
+                padding: 0;
+            }
         }
     }
     &__link {
         text-decoration: none;
         color: white;
+        @media screen and (min-width: $breakpoint-sm) {
+            color: $very-dark-blue;
+            transition: all 300ms ease-in-out;
+            &:hover {
+                color: $soft-red;
+            }
+        }
+        &--white-desktop {
+            @media screen and (min-width: $breakpoint-sm) {
+                color: #ffffff;
+            }
+        }
     }
     &--font-20px {
         font-size: 20px;
     }
-    &--margin-t-20-b-30 {
+    &--font-18px-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            font-size: 18px;
+        }
+    }
+    &--margin-t-20-b-30-mobile {
         margin: 20px 0 30px 0;
+        @media screen and (min-width: $breakpoint-sm) {
+            margin: 0;
+        }
+    }
+    &--margin-l-40px-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            margin-left: 40px;
+        }
+    }
+    &--flex-grow-desktop {
+        width: auto;
+        flex-grow: 1;
     }
 }
 
 .social-media {
     &__icon {
         margin: 0 19px;
+        @media screen and (min-width: $breakpoint-sm) {
+            &:hover {
+                path {
+                    fill: $soft-red;
+                }
+            }
+        }
+        path {
+            transition: .25s ease-in-out;
+        }
+    }
+    &--display-none-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            display: none;
+        }
     }
 }
 
 .button {
-    padding: 16px 20px;
+    padding: 14px 18px;
     color: #ffffff;
     border-radius: 4px;
     background: $soft-blue;
-    border: none;
+    border: 2px solid $soft-blue;
     box-shadow: 0px 6px 9px -3px rgba(170,170,170,0.8);
     cursor: pointer;
+    transition: all 300ms ease-in-out;
+    @media screen and (min-width: $breakpoint-sm) {
+        &:hover {
+            color: $soft-blue;
+            background: #ffffff;
+        }
+    }
     &--margin-right {
         margin-right: 13px;
     }
     &--grey-background {
         background: #f7f7f7;
+        border: 2px solid #f7f7f7;
         color: #6d6c7c;
+        @media screen and (min-width: $breakpoint-sm) {
+            &:hover {
+                border: 2px solid #6d6c7c;
+                background: #ffffff;
+                color: #6d6c7c;
+            }
+        }
     }
     &--red {
         background: $soft-red;
         box-shadow: none;
+        border: 2px solid $soft-red;
+        @media screen and (min-width: $breakpoint-sm) {
+            &:hover {
+                color: $soft-red;
+                background: #ffffff;
+            }
+        }
     }
     &--uppercase {
         text-transform: uppercase;
@@ -198,15 +318,22 @@ body {
         font-size: 20px;
     }
     &--red-desktop {
-        @media screen and (min-width: $breakpoint) {
+        @media screen and (min-width: $breakpoint-sm) {
             background: $soft-red;
             box-shadow: none;
-            border: none;
+            border: 2px solid $soft-red;
+            font-size: inherit;
+            padding: 12px 30px;
+            &:hover {
+                color: $soft-red;
+                background: #ffffff;
+                border: 2px solid $soft-red;
+            }
         }
     }
     &--display-none-mobile {
         display: none;
-        @media screen and (min-width: $breakpoint) {
+        @media screen and (min-width: $breakpoint-sm) {
             display: inline-block;
         }
     }
@@ -215,6 +342,10 @@ body {
 .description {
     display: flex;
     flex-direction: column;
+    @media screen and (min-width: $breakpoint-sm) {
+        flex-direction: row-reverse;
+        align-items: flex-start;
+    }
 }
 
 .section-image-wrapper {
@@ -232,35 +363,90 @@ body {
         border-top-left-radius: 40%;
         border-bottom-left-radius: 40%;
         z-index: -1;
+        @media screen and (min-width: $breakpoint-sm) {
+            top: 30%;
+            width: 100%;
+            right: -80px;
+        }
+        @media screen and (min-width: $breakpoint-md) {
+            right: -165px;
+        }
     }
     &--background-rotate-180deg {
         margin-bottom: 13%;
+        @media screen and (min-width: $breakpoint-md) {
+            margin-bottom: 3%;
+        }
         &::before {
             height: 95%;
             width: 85%;
             transform: rotate(180deg);
             right: auto;
             left: -32px;
+            @media screen and (min-width: $breakpoint-sm) {
+                left: -80px;
+                top: 80px;
+                width: 100%;
+            }
+            @media screen and (min-width: $breakpoint-md) {
+                left: -165px;
+            }
+        }
+    }
+    &--width-50percent-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            width: 50%;
+        }
+    }
+    &--padding-l-5percent-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            padding-left: 5%;
         }
     }
 }
 
 .section-image {
+    @media screen and (min-width: $breakpoint-sm) {
+        margin: 0 10% 0 10%;
+    }
     &--negative-margin-22px {
         margin: 0 -22px;
+        @media screen and (min-width: $breakpoint-sm) {
+            margin: 0 -7%;
+        }
+    }
+    &--scale-1-1-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            transform: scale(1.1);
+            transform-origin: left;
+        }
     }
 }
 
 .section-content {
+    @media screen and (min-width: $breakpoint-sm) {
+        width: 100%;
+    }
     &__title {
         color: $very-dark-blue;
         font-weight: 500;
         text-align: center;
+        @media screen and (min-width: $breakpoint-sm) {
+            font-size: 26px;
+        }
         &--big {
             font-size: 30px;
+            @media screen and (min-width: $breakpoint-sm) {
+                font-size: 38px;
+            }
         }
         &--white {
             color: #ffffff;
+        }
+        &--left-align-desktop {
+            @media screen and (min-width: $breakpoint-sm) {
+                text-align: left;
+            }
         }
     }
     &__paragraph {
@@ -269,6 +455,35 @@ body {
         margin-bottom: 40px;
         text-align: center;
         font-size: 15px;
+        @media screen and (min-width: $breakpoint-sm) {
+            font-size: 16px;
+            letter-spacing: 0.01em;
+        }
+        &--left-align-desktop {
+            @media screen and (min-width: $breakpoint-sm) {
+                text-align: left;
+            }
+        }
+        &--padding-l-r-28percent-desktop {
+            @media screen and (min-width: $breakpoint-sm) {
+                padding: 0 28%;
+            }
+        }
+    }
+    &--width-50percent-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            width: 50%;
+        }
+    }
+    &--padding-r-6percent-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            padding-right: 6%;
+        }
+    }
+    &--padding-l-10percent-desktop {
+        @media screen and (min-width: $breakpoint-sm) {
+            padding-left: 10%;
+        }
     }
 }
 
@@ -287,6 +502,11 @@ body {
         li:last-child {
             border-bottom: 1px solid $grayish-blue;
         }
+        @media screen and (min-width: $breakpoint-sm) {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
     }
     &__nav-item {
         padding: 22px 0;
@@ -294,6 +514,11 @@ body {
         cursor: pointer;
         transition: .25s ease-in-out;
         position: relative;
+        @media screen and (min-width: $breakpoint-sm) {
+            border-top: none;
+            border-bottom: 1px solid $grayish-blue;
+            width: 25%;
+        }
         &::after {
             content: '';
             transition: .25s ease-in-out;
@@ -311,6 +536,9 @@ body {
             color: $very-dark-blue;
             &::after {
                 transform: scaleX(0.5);
+                @media screen and (min-width: $breakpoint-sm) {
+                    transform: scaleX(1);
+                }
             } 
         }
     }
@@ -321,16 +549,44 @@ body {
             > div:nth-of-type(#{$i}) {
                 $value: 2 - $i;
                 transform: translateX(math.percentage($value));
+                @media screen and (min-width: $breakpoint-sm) {
+                    $value-desktop: 1 - $i;
+                    transform: translateX(math.percentage($value-desktop));
+                }
                 &.features-table__content-block--active {
                     animation-name: is-active-#{$i};
                     animation-duration: 300ms;
                     animation-fill-mode: forwards;
+                    @media screen and (min-width: $breakpoint-sm) {
+                        animation: none;
+                    }
+                    > div:nth-of-type(1) {
+                        animation-name: is-active-left-desktop;
+                        animation-duration: 300ms;
+                        animation-fill-mode: forwards;
+                    }
+                    > div:nth-of-type(2) {
+                        animation-name: is-active-right-desktop;
+                        animation-duration: 300ms;
+                        animation-fill-mode: forwards;
+                    }
                 }
                 &:not(.features-table__content-block--active) {
                     animation-name: going-out-#{$i};
                     animation-duration: 300ms;
+                    @media screen and (min-width: $breakpoint-sm) {
+                        animation-name: going-out-desktop-#{$i};
+                        animation-duration: 300ms;
+                        animation-fill-mode: forwards;
+                    }
                 }
             }
+        }
+        @media screen and (min-width: $breakpoint-sm) {
+            margin: 0 -80px;
+        }
+        @media screen and (min-width: $breakpoint-md) {
+            margin: 0 -165px;
         }
     }
     &__content-block {
@@ -342,6 +598,14 @@ body {
         transition: .25s ease-in-out;
         padding: 0 32px;
         margin-bottom: 50px;
+        @media screen and (min-width: $breakpoint-sm) {
+            flex-direction: row;
+            padding: 0 80px;
+            align-items: flex-start;
+        }
+        @media screen and (min-width: $breakpoint-md) {
+            padding: 0 165px;
+        }
     }
 }
 
@@ -399,6 +663,66 @@ body {
     }
 }
 
+@keyframes is-active-left-desktop{
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes is-active-right-desktop{
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes going-out-desktop-1{
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes going-out-desktop-2{
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes going-out-desktop-3{
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+        transform: translateX(-200%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
 .download {
     display: flex;
     flex-direction: column;
@@ -407,6 +731,17 @@ body {
 .download-cards {
     display: flex;
     flex-direction: column;
+    @media screen and (min-width: $breakpoint-sm) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: self-start;
+        > div:nth-of-type(2) {
+            margin-top: 42px;
+        }
+        > div:nth-of-type(3) {
+            margin-top: 84px;
+        }
+    }
 }
 
 .download-card {
@@ -415,6 +750,9 @@ body {
     border-radius: 9px;
     box-shadow: 0px 6px 9px -3px rgba(170,170,170,0.8);
     padding: 45px 25px 25px 25px;
+    @media screen and (min-width: $breakpoint-sm) {
+        max-width: 275px;
+    }
     &__title {
         color: $very-dark-blue;
     }
@@ -436,6 +774,9 @@ body {
 
 .faq-content {
     margin-bottom: 18px;
+    @media screen and (min-width: $breakpoint-sm) {
+        max-width: 540px;
+    }
     &__item {
         border-bottom: 1px solid $grayish-blue;
         position: relative;
@@ -465,7 +806,11 @@ body {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-    }
+        transition: all 300ms ease-in-out;
+            &:hover {
+                color: $soft-red;
+            }
+        }
     &__question-statement {
         display: inline-block;
         margin: 0;
@@ -490,9 +835,14 @@ body {
     padding: 72px 32px 0 32px;
     margin: 0 -32px;
     color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    @media screen and (min-width: $breakpoint-sm) {
+        padding: 72px 80px 0 80px;
+        margin: 0 -80px;
+    }
+    @media screen and (min-width: $breakpoint-md) {
+        padding: 72px 165px 0 165px;
+        margin: 0 -165px;
+    }
     &__subtitle {
         text-transform: uppercase;
         letter-spacing: 0.18em;
@@ -500,16 +850,38 @@ body {
     }
 }
 
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    @media screen and (min-width: $breakpoint-sm) {
+        max-width: 405px;
+        margin: auto;
+    }
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;
     margin-bottom: 60px;
+    @media screen and (min-width: $breakpoint-sm) {
+        flex-direction: row;
+        align-items: flex-start;
+    }
     &__email {
         border: none;
         border-radius: 4px;
-        padding: 18px 20px;
+        padding: 16px 20px;
         &::placeholder {
             color: $grayish-blue;
+        }
+    }
+    &__email-wrapper {
+        display: flex;
+        flex-direction: column;
+        @media screen and (min-width: $breakpoint-sm) {
+            flex-grow: 1;
+            margin-right: 16px;
         }
     }
     &__error {
@@ -549,6 +921,14 @@ body {
     position: relative;
     background: $very-dark-blue;
     margin: 0 -32px;
+    @media screen and (min-width: $breakpoint-sm) {
+        margin: 0 -80px;
+        padding: 0 80px;
+    }
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0 -165px;
+        padding: 0 165px;
+    }
     .attribution {
         color: #ffffff;
         text-align: center;
@@ -564,4 +944,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 40px 0;
+    @media screen and (min-width: $breakpoint-sm) {
+        flex-direction: row;
+    }
 }
