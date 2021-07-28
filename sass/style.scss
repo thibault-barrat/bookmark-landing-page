@@ -518,6 +518,9 @@ body {
             border-top: none;
             border-bottom: 1px solid $grayish-blue;
             width: 25%;
+            &:hover {
+                color: $soft-red;
+            }
         }
         &::after {
             content: '';

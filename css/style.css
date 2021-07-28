@@ -663,6 +663,9 @@ body.body--menu-open {
     border-bottom: 1px solid #9194a1;
     width: 25%;
   }
+  .features-table__nav-item:hover {
+    color: #fa5757;
+  }
 }
 .features-table__nav-item::after {
   content: "";
