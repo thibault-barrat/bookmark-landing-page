@@ -519,6 +519,11 @@ body.body--menu-open {
   }
 }
 @media screen and (min-width: 768px) {
+  .section-image-wrapper--width-40percent-tablet {
+    width: 40%;
+  }
+}
+@media screen and (min-width: 1024px) {
   .section-image-wrapper--width-50percent-desktop {
     width: 50%;
   }
@@ -606,6 +611,11 @@ body.body--menu-open {
   }
 }
 @media screen and (min-width: 768px) {
+  .section-content--width-60percent-tablet {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 1024px) {
   .section-content--width-50percent-desktop {
     width: 50%;
   }
